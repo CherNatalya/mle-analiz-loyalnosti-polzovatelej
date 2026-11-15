@@ -34,6 +34,9 @@ def main():
     print_header("Retention по региону (Топ-10)")
     print(processor.retention_by("first_region", top_n=10)[["users", "share_two_%"]])
 
+    print_header("Retention по дню недели первого заказа")
+    print(processor.retention_by("first_dow")[["users", "share_two_%"]])
+
     # 4. Проверка гипотез
     print_header("Проверка продуктовых гипотез")
     
@@ -64,7 +67,7 @@ def main():
     med_rev_2 = profile[profile['is_two']]['avg_revenue_rub'].median()
     med_diff = med_rev_2 - med_rev_1
     
-    print(f"• Средняя выручка на пользователя: {avg_rev_user:.2f} ₽ (средний чек по заказам: {avg_check_all:.2f} ₽)")
+    print(f"• Средняя по пользователям выручка с заказа: {avg_rev_user:.2f} ₽ (средний чек по заказам: {avg_check_all:.2f} ₽)")
     print(f"• Доля пользователей с 2+ заказами: {share_two:.2f}%")
     print(f"• Медианный чек: у 1 заказа — {med_rev_1:.2f} ₽, у 2+ заказов — {med_rev_2:.2f} ₽ (разница {med_diff:.2f} ₽)")
     
